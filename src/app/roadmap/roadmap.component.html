@@ -9,7 +9,7 @@
   <div *ngIf="selectedPath" style="display: inline-block">
     <label>站点: </label>
     <select [(ngModel)]="selectedStation">
-      <option *ngFor="let station of stationCandidates" [value]="station">{{station.name}}</option>
+      <option *ngFor="let station of stationCandidates" [ngValue]="station">{{station.name}}</option>
     </select>
   </div>
 </div>
