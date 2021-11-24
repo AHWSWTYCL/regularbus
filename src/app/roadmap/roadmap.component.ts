@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Roadmap, Station} from "./roadmap.model";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-roadmap',
@@ -9,30 +10,20 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class RoadmapComponent implements OnInit {
 
-  roadmap: Roadmap[] = [
-    {
-      path: '斜塘',
-      stations: [new Station("松涛街地铁站"), new Station("海德公园")]
-    },
-    {
-      path: '新区',
-      stations: []
-    }
-  ]
-  selectedPath: string = ''
-  selectedStation: Station = new Station('')
-  stationCandidates: Station[] = []
+  roadmap: {line: string, station: string}[] = []
+  lines: string[] = []
+  selectedLine: string = ''
+  selectedStation: string = ''
+  stationCandidates: string[] = []
 
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.getRoadmap()
   }
 
   onSelectPath() {
-    let candidates = this.roadmap.find(e => e.path === this.selectedPath)
-    if (candidates) {
-      this.stationCandidates = candidates.stations
-    }
+    this.stationCandidates = this.roadmap.map(e => e.station)
   }
 
   onSubmit() {
@@ -41,9 +32,19 @@ export class RoadmapComponent implements OnInit {
     };
 
     this.httpClient.post('http://127.0.0.1:8081/roadmap',
-      {path: this.selectedPath, station: this.selectedStation.name})
+      {path: this.selectedLine, station: this.selectedStation})
       .subscribe(data => {
         console.log(data)
       })
+  }
+
+  getRoadmap() {
+    this.httpClient.get<{line: string, station: string}[]>('http://127.0.0.1:8081/roadmap')
+      .subscribe(data => {
+        console.log(data)
+        this.roadmap = data
+        this.lines = [...new Set(this.roadmap.map(d => d.line))]
+        }
+      )
   }
 }

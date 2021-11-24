@@ -1,5 +1,5 @@
 export class Roadmap {
-  path: string = ''
+  line: string = ''
   stations: Station[] = []
 }
 
