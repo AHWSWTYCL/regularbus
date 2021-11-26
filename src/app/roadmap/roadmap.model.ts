@@ -1,12 +1,11 @@
-export class Roadmap {
-  line: string = ''
-  stations: Station[] = []
-}
-
 export class Station {
+  line: string = ''
   name: string = ''
+  time: string = ''
 
-  constructor(name: string) {
+  constructor(line: string, name: string, time: string) {
+    this.line = line;
     this.name = name;
+    this.time = time
   }
 }

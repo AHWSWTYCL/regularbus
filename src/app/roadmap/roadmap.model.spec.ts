@@ -1,7 +1,7 @@
-import { Roadmap } from './roadmap.model';
+import { Station } from './roadmap.model';
 
 describe('Roadmap.Model', () => {
   it('should create an instance', () => {
-    expect(new Roadmap()).toBeTruthy();
+    expect(new Station()).toBeTruthy();
   });
 });

@@ -9,9 +9,9 @@
   <div *ngIf="selectedLine" style="display: inline-block">
     <label>站点: </label>
     <select [(ngModel)]="selectedStation">
-      <option *ngFor="let station of stationCandidates" [value]="station">{{station}}</option>
+      <option *ngFor="let station of stationCandidates" [ngValue]="station">{{station.name}} {{station.time}}</option>
     </select>
   </div>
 </div>
 
-<button [disabled]="selectedStation === '' || selectedLine === ''" (click)="onSubmit()">提交</button>
+<button [disabled]="selectedStation.name === '' || selectedLine === ''" (click)="onSubmit()">提交</button>
