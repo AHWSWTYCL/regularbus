@@ -5,17 +5,26 @@ import { AppComponent } from './app.component';
 import { RoadmapComponent } from './roadmap/roadmap.component';
 import {FormsModule} from "@angular/forms";
 import { HttpClientModule, HttpClientJsonpModule } from "@angular/common/http";
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { MaterialModule } from "./material/material.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoadmapComponent
+    RoadmapComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        HttpClientJsonpModule
+        HttpClientJsonpModule,
+        MaterialModule,
+        BrowserAnimationsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
