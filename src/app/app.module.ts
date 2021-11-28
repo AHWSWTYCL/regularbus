@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppRoutingModule } from "./app-routing/app-routing.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         HttpClientModule,
         HttpClientJsonpModule,
         MaterialModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        AppRoutingModule
     ],
   providers: [],
   bootstrap: [AppComponent]

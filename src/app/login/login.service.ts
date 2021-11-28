@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Observable } from "rxjs";
 import { commonURL } from "../../global";
 import { User } from "../user/User";
@@ -14,6 +14,10 @@ export class LoginService {
   url = commonURL + '/login'
 
   login(user: User): Observable<any> {
-    return this.http.post(this.url, user)
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    return this.http.post(this.url, JSON.stringify(user), httpOptions)
   }
 }
