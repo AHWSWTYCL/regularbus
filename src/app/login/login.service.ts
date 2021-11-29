@@ -11,13 +11,18 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  url = commonURL + '/login'
+  loginUrl = commonURL + '/login'
+  registerUrl = commonURL + '/register'
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   login(user: User): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
+    return this.http.post(this.loginUrl, JSON.stringify(user), this.httpOptions)
+  }
 
-    return this.http.post(this.url, JSON.stringify(user), httpOptions)
+  register(user: User): Observable<any> {
+    return this.http.post(this.registerUrl, JSON.stringify(user), this.httpOptions)
   }
 }

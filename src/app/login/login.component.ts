@@ -30,4 +30,18 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+
+  register() {
+    this.loginService.register(this.user).subscribe(
+      data => {
+        if (data.code === -1) {
+          alert('注册失败！')
+        } else {
+          this.router.navigate(['roadmap']).then(r => {
+            console.log('注册成功！')
+          })
+        }
+      }
+    )
+  }
 }
