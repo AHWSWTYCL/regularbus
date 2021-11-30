@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing/app-routing.module";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AppRoutingModule } from "./app-routing/app-routing.module";
     RoadmapComponent,
     RegisterComponent,
     LoginComponent,
+    DashboardComponent,
   ],
     imports: [
         BrowserModule,
