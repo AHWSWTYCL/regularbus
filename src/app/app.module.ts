@@ -11,6 +11,8 @@ import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserComponent } from './user/user.component';
+import { UserService } from "./user/user.service";
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
+    UserComponent,
   ],
     imports: [
         BrowserModule,
@@ -30,7 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         BrowserAnimationsModule,
         AppRoutingModule
     ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

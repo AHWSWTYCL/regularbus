@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { User } from "../user/User";
 import { LoginService } from "./login.service";
+import { UserService } from "../user/user.service";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   user: User = new User()
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService,
+              private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +25,8 @@ export class LoginComponent implements OnInit {
         if (data.code === -1) {
           alert('登录失败！')
         } else {
-          this.router.navigate(['roadmap']).then(r => {
+          this.userService.setUser(this.user)
+          this.router.navigate(['user']).then(r => {
             console.log('登录成功！')
           })
         }
@@ -37,7 +40,8 @@ export class LoginComponent implements OnInit {
         if (data.code === -1) {
           alert('注册失败！')
         } else {
-          this.router.navigate(['roadmap']).then(r => {
+          this.userService.setUser(this.user)
+          this.router.navigate(['user']).then(r => {
             console.log('注册成功！')
           })
         }

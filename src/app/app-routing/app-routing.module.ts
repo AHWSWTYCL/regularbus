@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import { RoadmapComponent } from "../roadmap/roadmap.component";
 import { LoginComponent } from "../login/login.component";
+import {UserComponent} from "../user/user.component";
 
 const routes: Routes = [
   {path:'', redirectTo:'/home', pathMatch:'full'},
   {path:'home', component: LoginComponent },
-  { path: 'roadmap',
-    component: RoadmapComponent}
+  {path: 'roadmap', component: RoadmapComponent},
+  {path: 'user', component: UserComponent}
 ]
 
 
