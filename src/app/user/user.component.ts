@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "./User";
 import { UserService } from "./user.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-user',
@@ -15,9 +16,11 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUser()
+    console.log(this.user)
   }
 
   cancel() {
-
+    this.userService.cancelLine(this.user.name)
+    this.user = this.userService.getUser()
   }
 }

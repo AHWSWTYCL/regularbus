@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Station} from "./roadmap.model";
+import { UserService } from "../user/user.service";
 
 @Component({
   selector: 'app-roadmap',
@@ -15,7 +16,7 @@ export class RoadmapComponent implements OnInit {
   selectedStation: Station = new Station('', '', '')
   stationCandidates: Station[] = []
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getRoadmap()
@@ -30,10 +31,16 @@ export class RoadmapComponent implements OnInit {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    this.httpClient.post('http://127.0.0.1:8081/roadmap',
-      {name: 'Cocoa', path: this.selectedLine, station: this.selectedStation.name, time: this.selectedStation.time})
+    this.httpClient.post<any>('http://127.0.0.1:8081/roadmap',
+      {name: 'Cocoa', path: this.selectedLine, station: this.selectedStation.name, time: this.selectedStation.time}
+    , httpOptions)
       .subscribe(data => {
-        console.log(data)
+        if (data.code === -1) {
+          alert('提交失败！')
+        } else {
+          this.userService.updateUser()
+          alert('提交成功！')
+        }
       })
   }
 

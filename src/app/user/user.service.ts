@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {User} from "./User";
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {commonURL} from "../../global";
 
 @Injectable({
@@ -12,28 +12,52 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  url: string = commonURL + '/user'
+  userUrl: string = commonURL + '/user'
+  cancelLineUrl: string = commonURL + '/cancel'
 
   getUser() {
-    if (!this.user.name || !this.user.password) {
-      return new User()
-    }
-
-    this.http.get<{code: number, data: any}>(this.url, {params: {name: this.user.name, password: this.user.password}})
-      .subscribe(ret => {
-        if (ret.code === -1) {
-          alert('获取用户信息失败！')
-        } else {
-          this.user.line = ret.data.line
-          this.user.station = ret.data.station
-          this.user.time = ret.data.time
-        }
-      })
-
     return this.user
   }
 
   setUser(user: User) {
     this.user = user
+
+    if (!this.user.name || !this.user.password) {
+      return
+    }
+
+    this.updateUser()
+  }
+
+  updateUser() {
+    this.http.get<User>(this.userUrl, {params: {name: this.user.name, password: this.user.password}})
+      .subscribe(ret => {
+        if (ret === undefined) {
+          alert('获取用户信息失败！')
+        }
+
+        this.user.name = ret.name
+        this.user.password = ret.password
+        this.user.line = ret.line
+        this.user.station = ret.station
+        this.user.time = ret.time
+      })
+  }
+
+  cancelLine(name: string) {
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    this.http.post<any>(this.cancelLineUrl, {name: name}, httpOptions)
+      .subscribe(ret => {
+        if (ret.code === 1) {
+          alert(ret.message)
+        } else {
+          this.user.line = ''
+          this.user.station = ''
+          this.user.time = ''
+          alert('路线取消成功！')
+        }
+      })
   }
 }
