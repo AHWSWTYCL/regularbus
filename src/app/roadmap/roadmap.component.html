@@ -1,18 +1,25 @@
 <app-dashboard></app-dashboard>
 <div>
-  <div style="display: inline-block">
-    <label>路线: </label>
-    <select [(ngModel)]="selectedLine" name="roadmap" (ngModelChange)="onSelectPath()">
-      <option *ngFor="let line of lines" [value]="line">{{line}}</option>
-    </select>
+  <div>
+    <div style="display: inline-block">
+      <label>路线: </label>
+      <select [(ngModel)]="selectedLine" name="roadmap" (ngModelChange)="onSelectPath()">
+        <option *ngFor="let line of lines" [value]="line">{{line}}</option>
+      </select>
+    </div>
+
+    <div *ngIf="selectedLine" style="display: inline-block">
+      <label>站点: </label>
+      <select [(ngModel)]="selectedStation">
+        <option *ngFor="let station of stationCandidates" [ngValue]="station">{{station.name}} {{station.time}}</option>
+      </select>
+    </div>
   </div>
 
-  <div *ngIf="selectedLine" style="display: inline-block">
-    <label>站点: </label>
-    <select [(ngModel)]="selectedStation">
-      <option *ngFor="let station of stationCandidates" [ngValue]="station">{{station.name}} {{station.time}}</option>
-    </select>
+  <div *ngIf="selectedLine" >
+    <label>司机信息：</label>
+    <app-driver [line]="selectedLine"></app-driver>
   </div>
+
+  <button [disabled]="selectedStation.name === '' || selectedLine === ''" (click)="onSubmit()">提交</button>
 </div>
-
-<button [disabled]="selectedStation.name === '' || selectedLine === ''" (click)="onSubmit()">提交</button>

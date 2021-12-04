@@ -13,6 +13,7 @@ import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { UserService } from "./user/user.service";
+import { DriverComponent } from './driver/driver.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { UserService } from "./user/user.service";
     LoginComponent,
     DashboardComponent,
     UserComponent,
+    DriverComponent,
   ],
     imports: [
         BrowserModule,
