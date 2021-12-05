@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Driver} from "./driver-model";
 import { DriverService } from "./driver.service";
+import { UserService } from "../user/user.service";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 @Component({
   selector: 'app-driver',
@@ -22,10 +24,19 @@ export class DriverComponent implements OnInit {
   private _line: string = ''
   driver: Driver = new Driver()
 
-  constructor(private driverService: DriverService) {
+  constructor(private driverService: DriverService, private route: ActivatedRoute,
+              private userService: UserService) {
+
   }
 
   ngOnInit(): void {
+    // this.route.queryParams.subscribe(params => {
+    //   this.line = params['line']
+    // })
+    let user = this.userService.getUser()
+    if (user.line) {
+      this.line = user.line
+    }
   }
 
 }

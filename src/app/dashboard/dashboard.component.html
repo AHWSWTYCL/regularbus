@@ -1,9 +1,29 @@
-<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
-<nav>
-  <ul>
-    <li><a routerLink="/user" routerLinkActive="active">用户信息</a></li>
-    <li><a routerLink="/roadmap" routerLinkActive="active">选择路线</a></li>
-  </ul>
-</nav>
-<!-- The routed views render in the <router-outlet>-->
-<router-outlet></router-outlet>
+<div>
+  <div style="display: inline-block">
+    <ul class="nav flex-column" id="menu">
+      <li class="nav-item">
+
+        <a class="nav-link leftBarList " #barTable routerLink="/user" id="barTable" routerLinkActive="active">
+          <img class="mat-icon" src="assets/img/user.png">
+          用户信息</a>
+      </li>
+      <li class="nav-item">
+
+        <a class="nav-link leftBarList" routerLink="/roadmap" routerLinkActive="active">
+          <img class="mapIcon" src="assets/img/roadmap.png">
+          选择路线</a>
+      </li>
+      <li class="nav-item">
+
+        <a class="nav-link leftBarList" routerLink="/driver" routerLinkActive="active">
+          <img class="mapIcon" src="assets/img/driver.png">
+          司机信息</a>
+      </li>
+    </ul>
+  </div>
+
+  <div style="display: inline-block">
+    <!-- The routed views render in the <router-outlet>-->
+    <router-outlet></router-outlet>
+  </div>
+</div>

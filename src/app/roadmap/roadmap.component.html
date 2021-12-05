@@ -16,10 +16,5 @@
     </div>
   </div>
 
-  <div *ngIf="selectedLine" >
-    <label>司机信息：</label>
-    <app-driver [line]="selectedLine"></app-driver>
-  </div>
-
   <button [disabled]="selectedStation.name === '' || selectedLine === ''" (click)="onSubmit()">提交</button>
 </div>
