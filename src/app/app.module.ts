@@ -14,6 +14,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { UserService } from "./user/user.service";
 import { DriverComponent } from './driver/driver.component';
+import { AdministratorComponent } from './administrator/administrator.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -25,16 +28,19 @@ import { DriverComponent } from './driver/driver.component';
     DashboardComponent,
     UserComponent,
     DriverComponent,
+    AdministratorComponent,
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientModule,
-        HttpClientJsonpModule,
-        MaterialModule,
-        BrowserAnimationsModule,
-        AppRoutingModule
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatTableModule,
+    MatPaginatorModule
+  ],
   providers: [UserService],
   bootstrap: [AppComponent]
 })

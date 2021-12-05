@@ -6,5 +6,5 @@
   <label>{{user.line}} {{user.station}} {{user.time}}</label>
 </div>
 <div>
-  <button (click)="cancel()">取消</button>
+  <button [disabled]="!user.line" (click)="cancel()">取消</button>
 </div>
