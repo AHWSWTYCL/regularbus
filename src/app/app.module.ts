@@ -17,6 +17,7 @@ import { DriverComponent } from './driver/driver.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     BrowserAnimationsModule,
     AppRoutingModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
