@@ -1,0 +1,16 @@
+<h3 mat-dialog-title>添加路线</h3>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input type="text" matInput [(ngModel)]="data.line" placeholder="线路">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput [(ngModel)]="data.name" placeholder="站点">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput [(ngModel)]="data.time" placeholder="时间">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button type="button" color="primary" (click)="onClick()">保存</button>
+  <button mat-button mat-dialog-close type="button">关闭</button>
+</div>

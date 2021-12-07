@@ -18,6 +18,8 @@ import { AdministratorComponent } from './administrator/administrator.component'
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AddRoadmapDialogComponent } from './add-roadmap-dialog/add-roadmap-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -30,6 +32,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     UserComponent,
     DriverComponent,
     AdministratorComponent,
+    AddRoadmapDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatTableModule,
     MatPaginatorModule,
     MatCheckboxModule,
+    MatDialogModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

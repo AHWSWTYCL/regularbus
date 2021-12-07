@@ -4,6 +4,8 @@ import {MatTable, MatTableDataSource} from "@angular/material/table";
 import { RoadmapService } from "../roadmap/roadmap.service";
 import {MatPaginator} from "@angular/material/paginator";
 import {SelectionModel} from '@angular/cdk/collections';
+import {MatDialog} from "@angular/material/dialog";
+import {AddRoadmapDialogComponent} from "../add-roadmap-dialog/add-roadmap-dialog.component";
 
 @Component({
   selector: 'app-administrator',
@@ -22,7 +24,7 @@ export class AdministratorComponent implements OnInit {
   dataSource = new MatTableDataSource<Station>(this.stations);
   selection = new SelectionModel<Station>(true, []);
 
-  constructor(private roadmapService: RoadmapService) { }
+  constructor(private roadmapService: RoadmapService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.getStations()
@@ -38,7 +40,16 @@ export class AdministratorComponent implements OnInit {
   }
 
   addData() {
+    let station = new Station('', '', '')
+    const dialogRef = this.dialog.open(
+      AddRoadmapDialogComponent,
+      {width:'400px', height:'400px', data: station}
+    )
 
+    dialogRef.afterClosed()
+      .subscribe(result =>
+        console.log(result)
+      )
   }
 
   removeData() {
