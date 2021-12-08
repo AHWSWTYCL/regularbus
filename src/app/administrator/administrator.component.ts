@@ -6,6 +6,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatDialog} from "@angular/material/dialog";
 import {AddRoadmapDialogComponent} from "../add-roadmap-dialog/add-roadmap-dialog.component";
+import {AdministratorService} from "./administrator.service";
 
 @Component({
   selector: 'app-administrator',
@@ -24,7 +25,8 @@ export class AdministratorComponent implements OnInit {
   dataSource = new MatTableDataSource<Station>(this.stations);
   selection = new SelectionModel<Station>(true, []);
 
-  constructor(private roadmapService: RoadmapService, private dialog:MatDialog) { }
+  constructor(private roadmapService: RoadmapService, private dialog:MatDialog,
+              private adminService: AdministratorService) { }
 
   ngOnInit(): void {
     this.getStations()
@@ -47,19 +49,29 @@ export class AdministratorComponent implements OnInit {
     )
 
     dialogRef.afterClosed()
-      .subscribe(result =>
-        console.log(result)
+      .subscribe(result => {
+          console.log(result)
+          this.dataSource.data.push(result)
+          this.adminService.addStation(result).subscribe(data => {
+            console.log(data)
+          })
+          this.table.renderRows();
+      }
       )
   }
 
   removeData() {
     let data: Station[] = []
-    // TODO: 更新数据库
     this.dataSource.data.forEach(d => {
       if (!this.selection.selected.includes(d)) {
         data.push(d)
       }
     })
+
+    this.adminService.deleteStation(this.selection.selected)
+      .subscribe(data => {
+        console.log(data)
+      })
 
     this.dataSource = new MatTableDataSource(data)
     this.table.renderRows();

@@ -17,17 +17,9 @@ export class RoadmapService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    this.http.post<any>(this.roadmapUrl,
+    return this.http.post<any>(this.roadmapUrl,
       {name: name, path: station.line, station: station.name, time: station.time}
       , httpOptions)
-      .subscribe(data => {
-        if (data.code === -1) {
-          alert('提交失败！')
-        } else {
-          this.userService.updateUser()
-          alert('提交成功！')
-        }
-      })
   }
 
   getRoadmap() {

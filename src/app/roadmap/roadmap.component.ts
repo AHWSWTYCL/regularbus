@@ -40,6 +40,14 @@ export class RoadmapComponent implements OnInit {
       return
     }
     this.roadmapService.updateStation(this.user.name, this.selectedStation)
+      .subscribe(data => {
+        if (data.code === -1) {
+          alert('提交失败！')
+        } else {
+          this.userService.updateUser()
+          alert('提交成功！')
+        }
+      })
   }
 
   getRoadmap() {
