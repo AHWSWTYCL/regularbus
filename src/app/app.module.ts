@@ -20,6 +20,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { AddRoadmapDialogComponent } from './add-roadmap-dialog/add-roadmap-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { RoadmapTableComponent } from './roadmap-table/roadmap-table.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     DriverComponent,
     AdministratorComponent,
     AddRoadmapDialogComponent,
+    RoadmapTableComponent,
   ],
   imports: [
     BrowserModule,
